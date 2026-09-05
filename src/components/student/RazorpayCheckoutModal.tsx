@@ -85,6 +85,18 @@ export const RazorpayCheckoutModal: React.FC<RazorpayCheckoutModalProps> = ({
             email: 'student@campuseats.edu',
             contact: '9123456789',
           },
+          config: {
+            display: {
+              blocks: {
+                upi: {
+                  name: 'Pay via UPI',
+                  instruments: [{ method: 'upi' }],
+                },
+              },
+              sequence: ['block.upi'],
+              preferences: { show_default_blocks: true },
+            },
+          },
           theme: {
             color: '#ea580c',
           },
