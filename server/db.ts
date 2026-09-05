@@ -15,7 +15,11 @@ export async function connectDB() {
 
     if (!mongoUri || mongoUri.trim() === '') {
       console.log('No MONGODB_URI provided. Starting in-memory MongoDB server...');
-      mongoMemoryServer = await MongoMemoryServer.create();
+      mongoMemoryServer = await MongoMemoryServer.create({
+        instance: {
+          launchTimeout: 60000,
+        },
+      });
       mongoUri = mongoMemoryServer.getUri();
       console.log(`In-memory MongoDB started at: ${mongoUri}`);
     }
