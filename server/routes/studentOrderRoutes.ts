@@ -123,7 +123,12 @@ router.post('/checkout', authenticate, authorizeRole(['student']), async (req: A
       });
       razorpayOrderId = rzpOrder.id;
     } catch (rzpErr) {
-      console.log('Razorpay API error or test mode fallback:', rzpErr);
+      console.error('Razorpay order creation failed:', rzpErr);
+      if (!ALLOW_TEST_PAYMENTS) {
+        return res.status(502).json({
+          message: 'Razorpay could not create the payment order. Check the Razorpay test credentials and account setup.',
+        });
+      }
     }
 
     // 6. Save Order in MongoDB
