@@ -1,20 +1,15 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# CampusEats
 
-# Run and deploy your AI Studio app
+Campus food ordering and pickup management for students, vendors, and administrators.
 
-This contains everything you need to run your app locally.
+## Local setup
 
-View your app in AI Studio: https://ai.studio/apps/fdfd0931-f68d-4720-a745-a9b4c4a082ea
+1. Copy `.env.example` to `.env` and add your MongoDB and Razorpay Test Mode credentials.
+2. Install dependencies with `npm install`.
+3. Start the app with `npm run dev`.
+4. Open `http://localhost:3000`.
 
-## Run Locally
+## Checks
 
-**Prerequisites:**  Node.js
-
-
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+- `npm run lint` validates TypeScript.
+- `npm run build` creates the production bundle.
