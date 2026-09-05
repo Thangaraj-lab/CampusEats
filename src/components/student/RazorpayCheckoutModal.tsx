@@ -83,6 +83,7 @@ export const RazorpayCheckoutModal: React.FC<RazorpayCheckoutModalProps> = ({
           prefill: {
             name: 'Campus Student',
             email: 'student@campuseats.edu',
+            contact: '9123456789',
           },
           theme: {
             color: '#ea580c',
