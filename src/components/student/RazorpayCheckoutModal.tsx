@@ -60,6 +60,11 @@ export const RazorpayCheckoutModal: React.FC<RazorpayCheckoutModalProps> = ({
           key: razorpayOrder.key || import.meta.env.VITE_RAZORPAY_KEY_ID || 'rzp_test_campus_eats',
           amount: razorpayOrder.amount,
           currency: razorpayOrder.currency || 'INR',
+          method: {
+            upi: true,
+            card: true,
+            netbanking: true,
+          },
           name: 'Campus Eats',
           description: `Order ahead at ${orderData.vendorName}`,
           order_id: razorpayOrder.id,
