@@ -43,6 +43,17 @@ export const RazorpayCheckoutModal: React.FC<RazorpayCheckoutModalProps> = ({
 
       const { order, razorpayOrder } = checkoutRes.data;
 
+      if (razorpayOrder.testMode) {
+        const verifyRes = await api.post('/payments/verify', {
+          orderId: order.id,
+          razorpayOrderId: razorpayOrder.id,
+        });
+
+        setLoading(false);
+        onSuccess(verifyRes.data.order.id);
+        return;
+      }
+
       // 2. Check if Razorpay JS SDK is loaded
       if (typeof window !== 'undefined' && (window as any).Razorpay) {
         const options = {

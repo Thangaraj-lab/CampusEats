@@ -13,7 +13,9 @@ const router = Router();
 
 const RAZORPAY_KEY_ID = process.env.RAZORPAY_KEY_ID || 'rzp_test_campus_eats';
 const RAZORPAY_KEY_SECRET = process.env.RAZORPAY_KEY_SECRET || 'rzp_test_secret_campus_eats';
-const ALLOW_TEST_PAYMENTS = process.env.ALLOW_TEST_PAYMENTS === 'true';
+const ALLOW_TEST_PAYMENTS =
+  process.env.ALLOW_TEST_PAYMENTS === 'true' ||
+  (!process.env.RAZORPAY_KEY_ID && !process.env.RAZORPAY_KEY_SECRET);
 
 const razorpay = new Razorpay({
   key_id: RAZORPAY_KEY_ID,
@@ -172,6 +174,7 @@ router.post('/checkout', authenticate, authorizeRole(['student']), async (req: A
         amount: Math.round(totalAmount * 100),
         currency: 'INR',
         key: RAZORPAY_KEY_ID,
+        testMode: ALLOW_TEST_PAYMENTS,
       },
     });
   } catch (error: any) {
